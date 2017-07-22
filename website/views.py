@@ -18,7 +18,8 @@ def current_game(request):
     form=ChampMessage(request.POST or None)
     if form.is_valid():
         message=form.cleaned_data['message']
-        Message(content=message,)
+
+        #Message(content=message,)
     else:
         message="Tapez du texte !"
     print(message)
