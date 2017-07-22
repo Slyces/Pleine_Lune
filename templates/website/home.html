@@ -16,6 +16,11 @@
         <div class="ui segment">
             <p><a href="{% url 'currentGame' %}">Partie en cours</a></p>
         </div>
+        <div class="ui segment">
+            {% for game in games_list %}
+                <p>Ok</p>
+            {% endfor %}
+        </div>
     </div>
     <div class="ui container">
         <div class="ui segment">

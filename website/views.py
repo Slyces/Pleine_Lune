@@ -6,24 +6,24 @@ from .forms import *
 from .models import *
 
 
-
 # Create your views here.
 # @login_required
 def home(request):
     user_list = User.objects.all()
-    return render(request, 'website/home.html', context={"user_list": user_list})
+    games_list = []#Game.objects.all().select_related('player').select_related('user').filter(user=request.user)
+    return render(request, 'website/home.html', context={"user_list": user_list,"games_list": games_list})
 
 
 def current_game(request):
-    form=ChampMessage(request.POST or None)
+    form = ChampMessage(request.POST or None)
     if form.is_valid():
-        message=form.cleaned_data['message']
+        message = form.cleaned_data['message']
 
-        #Message(content=message,)
+        # Message(content=message,)
     else:
-        message="Tapez du texte !"
+        message = "Tapez du texte !"
     print(message)
-    return render(request, 'website/currentGame.html',context={"message":message})
+    return render(request, 'website/currentGame.html', context={"message": message})
 
 
 def game_list(request):
