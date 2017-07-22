@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
-
 from django.contrib.auth.models import User
+from .forms import *
 
 # Create your views here.
 def home(request):
@@ -10,7 +10,12 @@ def home(request):
 
 
 def current_game(request):
-    return render(request, 'website/currentGame.html')
+    form=champMessage(request.POST or None)
+    if form.is_valid():
+        message=form.cleaned_data['message']
+    else :
+        message="Tapez du texte !"
+    return render(request, 'website/currentGame.html',context={"message":message})
 
 
 def game_list(request):

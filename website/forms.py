@@ -6,3 +6,6 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password')
+
+class champMessage(forms.Form):
+    message = forms.CharField(widget=forms.Textarea)
