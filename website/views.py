@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.views import View
 
+from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request):
-    return render(request, 'website/home.html')
+    user_list = User.objects.all()
+    return render(request, 'website/home.html', context={"user_list": user_list})
 
 
 def current_game(request):
