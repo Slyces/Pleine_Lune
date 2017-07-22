@@ -14,6 +14,17 @@
     </div>
     <div class="ui container">
         <div class="ui segment">
+           <p>{{ message }}</p>
+            <form action="{% url "currentGame" %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <p><label for="id_message">Message:</label> <textarea id="id_message" rows="5" cols="40" name="message"></textarea></p>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+    <div class="ui container">
+        <div class="ui segment">
            <p><a href="{% url 'home' %}">Page d'accueil</a></p>
         </div>
     </div>
