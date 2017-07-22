@@ -24,8 +24,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'website/semantic/components/list.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'website/semantic/components/segment.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'website/semantic/components/dropdown.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'website/semantic/components/button.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'website/semantic/components/input.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'website/semantic/components/form.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'website/semantic/components/icon.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'website/semantic/components/sticky.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'website/semantic/components/message.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'website/semantic/components/tab.min.css' %}">
     {% block css %}{% endblock %}
 
@@ -35,13 +39,9 @@
     <script src="{% static 'website/semantic/components/sticky.min.js' %}"></script>
     <script src="{% static 'website/semantic/components/tab.min.js' %}"></script>
     {% block scripts %}{% endblock %}
-
 </head>
 
 {% block header %}
-<header>
-    This is Spart ... a header.
-</header>
 {% endblock %}
 
 <body>
@@ -51,9 +51,6 @@
 </body>
 
 {% block footer %}
-<footer>
-    This is a footer
-</footer>
 {% endblock %}
 
 </html>
