@@ -6,7 +6,7 @@ from .forms import *
 
 
 # Create your views here.
-@login_required
+# @login_required
 def home(request):
     user_list = User.objects.all()
     return render(request, 'website/home.html', context={"user_list": user_list})
@@ -18,6 +18,7 @@ def current_game(request):
         message=form.cleaned_data['message']
     else :
         message="Tapez du texte !"
+    print(message)
     return render(request, 'website/currentGame.html',context={"message":message})
 
 
