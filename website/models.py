@@ -15,13 +15,13 @@ class Player(models.Model):
 class Role(models.Model):
     name = models.TextField(max_length=50, blank=True)
     description = models.TextField(max_length=500, blank=True)
-    officiel = models.BooleanFieldField(blank=True)
+    officiel = models.BooleanField(blank=True)
     # @TODO profile picture
 
 class Game(models.Model):
     name = models.TextField(max_length=50, blank=True)
     gamemode = models.TextField(max_length=50, blank=True)
-    players = models.ManyToManyField()
+    players = models.ManyToManyField(Player)
     # @TODO Etat du jeu
 
 class Message(models.Model):
