@@ -1,4 +1,5 @@
 from django.db import models
+from .views import User
 
 # Create your models here.
 
@@ -26,6 +27,6 @@ class Game(models.Model):
 class Message(models.Model):
     content = models.TextField(max_length=500, blank=True)
     sender = models.ForeignKey(Player, on_delete=models.CASCADE)
-    # @TODO tag du message
     pub_date = models.DateField()
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    # @TODO tag du message
