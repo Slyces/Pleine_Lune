@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
-<body>
+{% extends 'website/base.html' %}
 
-<p> LOL </p>
+{% block title %}
+    Welcome Home
+{% endblock %}
 
-</body>
-</html>
+{% block header %}{% endblock %}
+
+{% block content %}
+    <div class="ui container">
+        <div class="ui segment">
+            <h1 class="ui center"> Welcome to this Django Website </h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
