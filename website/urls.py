@@ -4,9 +4,10 @@ from . import views
 
 urlpatterns = [
     url(r'^home/?$', views.home, name='home'),
-    url(r'^login/?$', auth_views.login, name='login'),
-    url(r'^logout/?$', auth_views.logout, name='logout'),
-    url(r'^currentGame/?', views.currentGame, name='currentGame'),
-    url(r'^gameList/?', views.gameList, name='gameList'),
-    url(r'^help/?', views.help, name='help'),
+    url(r'^accounts/login/?$', views.login_view, name='login'),
+    url(r'^accounts/logout/?$', auth_views.logout, name='logout'),
+    url(r'^currentGame/?', views.current_game, name='currentGame'),
+    url(r'^gameList/?', views.game_list, name='gameList'),
+    url(r'^help/?', views.help_page, name='help'),
+    url(r'^accounts/register', views.register, name='register'),
 ]
