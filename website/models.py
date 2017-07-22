@@ -1,22 +1,31 @@
 from django.db import models
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-
 
 # Create your models here.
-class Profile(models.Model):
-    user = models.OneToOneField(User, models.CASCADE)
-    played = models.IntegerField(default=0)
-    won = models.IntegerField(default=0)
 
+class Player(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nickname = models.TextField(max_length=50, blank=True)
+    # profile picture
+    # game
+    # Role
+    # etat
+    # Droits
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
+class Role(models.Model):
+    name = models.TextField(max_length=50, blank=True)
+    description = models.TextField(max_length=500, blank=True)
+    officiel = models.BooleanFieldField(blank=True)
+    # profile_picture
 
+class Game(models.Model):
+    name = models.TextField(max_length=50, blank=True)
+    gamemode = models.TextField(max_length=50, blank=True)
+    players = models.ManyToManyField()
+    # etat
 
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+class Message(models.Model):
+    content = models.TextField(max_length=500, blank=True)
+    # sender
+    # tag
+    # Date
+    # game
