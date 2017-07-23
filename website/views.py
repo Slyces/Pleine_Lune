@@ -4,6 +4,8 @@ from django.contrib.auth.views import login_required
 from django.contrib.auth.models import User
 from .forms import *
 from .models import *
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 # Create your views here.
@@ -42,7 +44,7 @@ def register(request):
         # check whether it's valid:
         if form.is_valid():
             User.objects.create_user(form.cleaned_data['username'], form.cleaned_data['email'], form.cleaned_data['password'], first_name=form.cleaned_data['first_name'], last_name=form.cleaned_data['last_name'])
-            return HttpResponseRedirect('/thanks/')
+            return HttpResponseRedirect(reverse('home'))
 
             # if a GET (or any other method) we'll create a blank form
     else:
