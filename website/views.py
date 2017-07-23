@@ -40,6 +40,10 @@ def help_page(request):
     return render(request, 'website/help.html')
 
 
+def create_game(request):
+    return render(request, 'website/createGame.html')
+
+
 def register(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:

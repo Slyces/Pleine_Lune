@@ -1,7 +1,7 @@
 {% extends 'website/base.html' %}
 
 {% block title %}
-    Register
+    Creating a game
 {% endblock %}
 
 {% block css %}
@@ -33,7 +33,7 @@
         <div class="column">
             <h2 class="ui blue image header">
                 <div class="content">
-                    Register your account
+                    Create your game
                 </div>
             </h2>
             <form action="/accounts/register/" method="post">
@@ -42,11 +42,11 @@
                     <div class="ui form">
                         <div class="two fields">
                             <div class="field">
-                                <label>Username</label>
+                                <label>Name</label>
                                 {{ form.username }}
                             </div>
                             <div class="field">
-                                <label>Password</label>
+                                <label>GameMode</label>
                                 {{ form.password }}
                             </div>
                         </div>
@@ -54,20 +54,20 @@
                     <div class="ui form">
                         <div class="three fields">
                             <div class="field">
-                                <label>Email</label>
+                                <label>Max players</label>
                                 {{ form.email }}
                             </div>
                             <div class="field">
-                                <label>First name</label>
+                                <label>Other settings</label>
                                 {{ form.first_name }}
                             </div>
                             <div class="field">
-                                <label>Last name</label>
+                                <label>Other settings</label>
                                 {{ form.last_name }}
                             </div>
                         </div>
                     </div>
-                    <input class="ui fluid large blue submit button" type="submit" value="Register">
+                    <input class="ui fluid large blue submit button" type="submit" value="Create">
                 </div>
                 {#                {{ form.as_p }}#}
             </form>

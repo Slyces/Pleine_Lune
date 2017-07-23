@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^gameList/?', views.game_list, name='gameList'),
     url(r'^help/?', views.help_page, name='help'),
     url(r'^accounts/registSample Texter', views.register, name='register'),
+    url(r'^createGame/', views.create_game, name='createGame'),
 ]
