@@ -9,13 +9,13 @@
 {% block content %}
     <div class="ui container">
         <div class="ui segment">
-            <h1 class="ui center"> Ceci est une partie en cours ! </h1>
+            <h1 class="ui center"> Ceci est une partie en cours ! id : {{ id }}</h1>
         </div>
     </div>
     <div class="ui container">
         <div class="ui segment">
            <p>{{ message }}</p>
-            <form action="{% url "currentGame" %}" method="post">
+            <form action="" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <p><label for="id_message">Message:</label> <textarea id="id_message" rows="5" cols="40" name="message"></textarea></p>

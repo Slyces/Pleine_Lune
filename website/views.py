@@ -15,16 +15,17 @@ def home(request):
     return render(request, 'website/home.html', context={"user_list": user_list,"games_list": games_list,"player": player})
 
 
-def current_game(request):
+def current_game(request, game_id=0):
     form = ChampMessage(request.POST or None)
+    user_list = User.objects.all()
+    player = Player.objects.get(user=request.user)
     if form.is_valid():
         message = form.cleaned_data['message']
-
-        # Message(content=message,)
+        #Message(content=message,sender=player,pub_date)
     else:
         message = "Tapez du texte !"
     print(message)
-    return render(request, 'website/currentGame.html', context={"message": message})
+    return render(request, 'website/currentGame.html', context={"message": message,"id":game_id})
 
 
 def game_list(request):

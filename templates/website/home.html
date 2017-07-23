@@ -14,13 +14,13 @@
     </div>
     <div class="ui container">
         <div class="ui segment">
-            <p><a href="{% url 'currentGame' %}">Partie en cours</a></p>
+            <p><a href="{% url 'currentGame' 0 %}">Partie en cours</a></p>
         </div>
         <div class="ui segment">
         <p>Vous êtes {{ player.nickname }}</p>
         <p> La liste de vos parties en cours:</p>
             {% for game in games_list %}
-                <p>{{ game.name }}</p>
+                <p><a href="{% url 'currentGame' game.id %}">{{ game.name }}</a></p>
             {% endfor %}
         </div>
     </div>
