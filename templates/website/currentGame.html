@@ -18,7 +18,6 @@
             <div class="ui comments">
                 <h3 class="ui dividing header">Chat</h3>
                 {% for post in chat %}
-
                     <div class="comment">
                         <a class="avatar">
                             <img src="{% static 'images/profile.jpg' %}">
@@ -37,23 +36,21 @@
                         </div>
                     </div>
                 {% endfor %}
-                <form class="ui reply form">
+                <form action="" method="post" class="ui reply form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
                     <div class="field">
-                        <textarea></textarea>
+                        <textarea id="id_message" name="message"></textarea>
                     </div>
                     <div class="ui blue labeled submit icon button">
-                        <i class="icon edit"></i> Add Reply
+                        <i class="icon edit"></i> Send message
                     </div>
+                    <input type="submit" value="Submit" class="icon edit"/>
+                    # @TODO make the button great again
                 </form>
             </div>
 
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <p><label for="id_message">Message:</label> <textarea id="id_message" rows="5" cols="40"
-                                                                      name="message"></textarea></p>
-                <input type="submit" value="Submit"/>
-            </form>
+
         </div>
     </div>
     <div class="ui container">
