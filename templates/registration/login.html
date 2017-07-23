@@ -94,7 +94,11 @@
                     <input class="ui fluid large blue submit button" type="submit" value="Login">
                 </div>
 
-                <div class="ui error message">{{ form.error_message }}</div>
+                {% if post %}
+                    <div class="ui error message">
+                        Your username and password do not match. Make sure you already signed in.
+                    </div>
+                {% endif %}
 
             </form>
 
