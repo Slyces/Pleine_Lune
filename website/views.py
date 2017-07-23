@@ -36,4 +36,16 @@ def help_page(request):
 
 
 def register(request):
-    return render(request, 'registration/register.html')
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = RegisterForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            User.objects.create_user(form.cleaned_data['username'], form.cleaned_data['email'], form.cleaned_data['password'], first_name=form.cleaned_data['first_name'], last_name=form.cleaned_data['last_name'])
+            return HttpResponseRedirect('/thanks/')
+
+            # if a GET (or any other method) we'll create a blank form
+    else:
+        form = RegisterForm()
+    return render(request, 'registration/register.html', {'form': form})
+

@@ -72,31 +72,43 @@
         <div class="column">
             <h2 class="ui blue image header">
                 <div class="content">
-                    Log-in to your account
+                    Register your account
                 </div>
             </h2>
-
-            <form class="ui large form" action="." method="post">
+            <form action="." method="post">
                 {% csrf_token %}
-                <div class="ui stacked segment">
-                    <div class="field">
-                        <div class="ui left icon input">
-                            <i class="user icon"></i>
-                            {{ form.username }}
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui left icon input">
-                            <i class="lock icon"></i>
-                            {{ form.password }}
-                        </div>
-                    </div>
-                    <div class="ui fluid large blue submit button">Login</div>
-                </div>
-
-                <div class="ui error message">{{ form.error_message }}</div>
-
+                {{ form }}
+{#                    {{ form.username.label }}#}
+{#                    {{ form.username }}#}
+{#                    {{ form.password.label }}#}
+{#                    {{ form.password }}#}
+{#                    {{ form.email.label }}#}
+{#                    {{ form.email }}#}
+{#                    {{ form.first_name.label }}#}
+{#                    {{ form.first_name }}#}
+{#                    {{ form.last_name.label }}#}
+{#                    {{ form.last_name }}#}
             </form>
+{#            <form class="ui large form" action="." method="post">#}
+{#                {% csrf_token %}#}
+{#                <div class="ui stacked segment">#}
+{#                    <div class="field">#}
+{#                        <div class="ui left icon input">#}
+{#                            <i class="user icon"></i>#}
+{#                            {{ form.username }}#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="field">#}
+{#                        <div class="ui left icon input">#}
+{#                            <i class="lock icon"></i>#}
+{#                            {{ form.password }}#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="ui fluid large blue submit button">Login</div>#}
+{#                </div>#}
+{##}
+{#                <div class="ui error message">{{ form.error_message }}</div>#}
+{#            </form>#}
 
             <div class="ui message">
                 <h3><a href="{% url 'register' %}">Sign Up</a></h3>
