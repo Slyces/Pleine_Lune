@@ -6,6 +6,7 @@ from .forms import *
 from .models import *
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+import datetime
 
 
 # Create your views here.
@@ -19,15 +20,16 @@ def home(request):
 
 def current_game(request, game_id=0):
     form = ChampMessage(request.POST or None)
-    user_list = User.objects.all()
     player = Player.objects.get(user=request.user)
+    game = Game.objects.get(id=game_id)
+    chat=Message.objects.all()
     if form.is_valid():
         message = form.cleaned_data['message']
-        #Message(content=message,sender=player,pub_date)
+        Message(content=message, sender=player, pub_date=datetime.datetime.now(), game=game).save()
     else:
         message = "Tapez du texte !"
     print(message)
-    return render(request, 'website/currentGame.html', context={"message": message,"id":game_id})
+    return render(request, 'website/currentGame.html', context={"message": message,"id":game_id,"chat":chat})
 
 
 def game_list(request):

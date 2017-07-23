@@ -14,7 +14,9 @@
     </div>
     <div class="ui container">
         <div class="ui segment">
-           <p>{{ message }}</p>
+           {% for post in chat %}
+                <p>{{ post.content }}</p>
+            {% endfor %}
             <form action="" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
