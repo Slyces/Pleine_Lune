@@ -10,7 +10,7 @@ import datetime
 
 
 # Create your views here.
-# @login_required
+@login_required
 def home(request):
     user_list = User.objects.all()
     player=Player.objects.get(user=request.user)
