@@ -1,7 +1,7 @@
 {% extends 'website/base.html' %}
 
 {% block title %}
-    Login
+    Register
 {% endblock %}
 
 {% block css %}
@@ -21,50 +21,17 @@
         .column {
             max-width: 450px;
         }
+
+        .asked {
+            text-align: left;
+            margin: 10px;
+            color: dodgerblue;
+            font-weight: bold;
+        }
     </style>
 {% endblock %}
 
 {% block scripts %}
-    <script>
-        $(document)
-            .ready(function () {
-                $("#id_username").attr('placeholder', 'Please enter your username');
-                $("#id_password").attr('placeholder', 'Please enter your password');
-                $('.ui.form')
-                    .form({
-                        fields: {
-                            email: {
-                                identifier: 'id_username',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Please enter your username'
-                                    },
-                                    {
-                                        type: 'email',
-                                        prompt: 'Please enter a valid username'
-                                    }
-                                ]
-                            },
-                            password: {
-                                identifier: 'id_password',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Please enter your password'
-                                    },
-                                    {
-                                        type: 'length[8]',
-                                        prompt: 'Your password must be at least 8 characters'
-                                    }
-                                ]
-                            }
-                        }
-                    })
-                ;
-            })
-        ;
-    </script>
 {% endblock %}
 
 {% block content %}
@@ -75,44 +42,61 @@
                     Register your account
                 </div>
             </h2>
-            <form action="." method="post">
+            <form action="/accounts/register/" method="post">
                 {% csrf_token %}
-                {{ form }}
-{#                    {{ form.username.label }}#}
-{#                    {{ form.username }}#}
-{#                    {{ form.password.label }}#}
-{#                    {{ form.password }}#}
-{#                    {{ form.email.label }}#}
-{#                    {{ form.email }}#}
-{#                    {{ form.first_name.label }}#}
-{#                    {{ form.first_name }}#}
-{#                    {{ form.last_name.label }}#}
-{#                    {{ form.last_name }}#}
+                <div class="ui raised segment">
+                    <div class="ui form">
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Username</label>
+                                {{ form.username }}
+                            </div>
+                            <div class="field">
+                                <label>Password</label>
+                                {{ form.password }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui form">
+                        <div class="three fields">
+                            <div class="field">
+                                <label>Email</label>
+                                {{ form.email }}
+                            </div>
+                            <div class="field">
+                                <label>First name</label>
+                                {{ form.first_name }}
+                            </div>
+                            <div class="field">
+                                <label>Last name</label>
+                                {{ form.last_name }}
+                            </div>
+                        </div>
+                    </div>
+                    <input class="ui fluid large blue submit button" type="submit" value="Register">
+                </div>
+                {#                {{ form.as_p }}#}
             </form>
-{#            <form class="ui large form" action="." method="post">#}
-{#                {% csrf_token %}#}
-{#                <div class="ui stacked segment">#}
-{#                    <div class="field">#}
-{#                        <div class="ui left icon input">#}
-{#                            <i class="user icon"></i>#}
-{#                            {{ form.username }}#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="field">#}
-{#                        <div class="ui left icon input">#}
-{#                            <i class="lock icon"></i>#}
-{#                            {{ form.password }}#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="ui fluid large blue submit button">Login</div>#}
-{#                </div>#}
-{##}
-{#                <div class="ui error message">{{ form.error_message }}</div>#}
-{#            </form>#}
-
-            <div class="ui message">
-                <h3><a href="{% url 'register' %}">Sign Up</a></h3>
-            </div>
+            {#            <form class="ui large form" action="." method="post">#}
+            {#                {% csrf_token %}#}
+            {#                <div class="ui stacked segment">#}
+            {#                    <div class="field">#}
+            {#                        <div class="ui left icon input">#}
+            {#                            <i class="user icon"></i>#}
+            {#                            {{ form.username }}#}
+            {#                        </div>#}
+            {#                    </div>#}
+            {#                    <div class="field">#}
+            {#                        <div class="ui left icon input">#}
+            {#                            <i class="lock icon"></i>#}
+            {#                            {{ form.password }}#}
+            {#                        </div>#}
+            {#                    </div>#}
+            {#                    <div class="ui fluid large blue submit button">Login</div>#}
+            {#                </div>#}
+            {##}
+            {#                <div class="ui error message">{{ form.error_message }}</div>#}
+            {#            </form>#}
         </div>
     </div>
 {% endblock %}
