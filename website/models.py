@@ -3,6 +3,7 @@ from .views import User
 
 # Create your models here.
 
+
 class Role(models.Model):
     name = models.TextField(max_length=50, blank=True)
     description = models.TextField(max_length=500, blank=True)
@@ -24,6 +25,7 @@ class Game(models.Model):
     gamemode = models.TextField(max_length=50, blank=True)
     player = models.ManyToManyField(Player)
     # @TODO Etat du jeu
+
 
 class Message(models.Model):
     content = models.TextField(max_length=500, blank=True)
