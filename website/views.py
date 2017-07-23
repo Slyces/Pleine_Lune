@@ -22,7 +22,8 @@ def current_game(request, game_id=0):
     form = ChampMessage(request.POST or None)
     player = Player.objects.get(user=request.user)
     game = Game.objects.get(id=game_id)
-    chat=Message.objects.all()
+    chat=Message.objects.all().order_by('-pub_date')
+    chat=chat[max(len(chat)-20,0):len(chat)]
     if form.is_valid():
         message = form.cleaned_data['message']
         Message(content=message, sender=player, pub_date=datetime.datetime.now(), game=game).save()

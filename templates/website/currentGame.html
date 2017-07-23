@@ -1,4 +1,5 @@
 {% extends 'website/base.html' %}
+{% load staticfiles %}
 
 {% block title %}
     Partie en cours WIP
@@ -14,20 +15,47 @@
     </div>
     <div class="ui container">
         <div class="ui segment">
-           {% for post in chat %}
-                <p>{{ post.content }}</p>
-            {% endfor %}
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <p><label for="id_message">Message:</label> <textarea id="id_message" rows="5" cols="40" name="message"></textarea></p>
-                <input type="submit" value="Submit" />
-            </form>
+            <div class="ui comments">
+                <h3 class="ui dividing header">Chat</h3>
+                {% for post in chat %}
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="{% static 'images/profile.jpg' %}">
+                        </a>
+                        <div class="content">
+                            <a class="author">{{ post.sender.nickname }}</a>
+                            <div class="metadata">
+                                <span class="date">{{ post.pub_date }}</span>
+                            </div>
+                            <div class="text">
+                                {{ post.content }}
+                            </div>
+                            <div class="actions">
+                                <a class="reply">Reply</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <form action="" method="post" class="ui reply form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="field">
+                        <textarea id="id_message" name="message"></textarea>
+                    </div>
+                    <div class="ui blue labeled submit icon button">
+                        <i class="icon edit"></i> Send message
+                    </div>
+                    <input type="submit" value="Submit" class="icon edit"/>
+                    # @TODO make the button great again
+                </form>
+            </div>
+
+
         </div>
     </div>
     <div class="ui container">
         <div class="ui segment">
-           <p><a href="{% url 'home' %}">Page d'accueil</a></p>
+            <p><a href="{% url 'home' %}">Page d'accueil</a></p>
         </div>
     </div>
 {% endblock %}
