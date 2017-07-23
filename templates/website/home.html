@@ -17,8 +17,10 @@
             <p><a href="{% url 'currentGame' %}">Partie en cours</a></p>
         </div>
         <div class="ui segment">
+        <p>Vous êtes {{ player.nickname }}</p>
+        <p> La liste de vos parties en cours:</p>
             {% for game in games_list %}
-                <p>Ok</p>
+                <p>{{ game.name }}</p>
             {% endfor %}
         </div>
     </div>

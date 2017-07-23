@@ -10,8 +10,9 @@ from .models import *
 # @login_required
 def home(request):
     user_list = User.objects.all()
-    games_list = []#Game.objects.all().select_related('player').select_related('user').filter(user=request.user)
-    return render(request, 'website/home.html', context={"user_list": user_list,"games_list": games_list})
+    player=Player.objects.get(user=request.user)
+    games_list = Game.objects.all().filter(player__exact=player)#Sélectionne la liste des parties ou le joueur connecté est impliqué
+    return render(request, 'website/home.html', context={"user_list": user_list,"games_list": games_list,"player": player})
 
 
 def current_game(request):
