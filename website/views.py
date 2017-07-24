@@ -23,14 +23,14 @@ def current_game(request, game_id=0):
     player = Player.objects.get(user=request.user)
     game = Game.objects.get(id=game_id)
 
-    chat=Message.objects.all().order_by('pub_date')#Tri des messages
-    chat=chat[max(len(chat)-20,0):len(chat)]#Chargement des 20 derniers messages
-
     if form.is_valid():
         message = form.cleaned_data['message']#Ajout du messages à la BDD
         Message(content=message, sender=player, pub_date=datetime.datetime.now(), game=game).save()
     else:
         message = "Tapez du texte !"
+
+    chat = Message.objects.all().order_by('pub_date')  # Tri des messages
+    chat = chat[max(len(chat) - 20, 0):len(chat)]  # Chargement des 20 derniers messages
     return render(request, 'website/currentGame.html', context={"message": message,"id":game_id,"chat":chat})
 
 
