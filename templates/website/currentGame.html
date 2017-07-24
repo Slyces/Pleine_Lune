@@ -23,8 +23,9 @@
     </div>
     <div class="ui container">
         <div class="ui segment">
-            <div class="ui comments">
-                <h3 class="ui dividing header">Chat</h3>
+            <h3 class="ui dividing header">Chat</h3>
+            <div style="overflow:scroll; height: 400px; overflow-x:hidden;" class="ui comments">
+{#            @TODO faire commencer la scrollbar en bas, elargir la zone de chat#}
                 {% for post in chat %}
                     <div class="comment">
                         <a class="avatar">
@@ -38,9 +39,6 @@
                             <div class="text">
                                 {{ post.content }}
                             </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
-                            </div>
                         </div>
                     </div>
                 {% endfor %}
@@ -50,10 +48,7 @@
                     <div class="field">
                         <textarea id="id_message" name="message"></textarea>
                     </div>
-{#                    <div class="ui blue labeled submit icon button">#}
-{#                        <i class="icon edit"></i> Send message#}
-{#                    </div>#}
-                    <input type="submit" value="Submit" class="ui button"/>
+                    <input type="submit" value="Send Message" class="ui blue button"/>
                 </form>
             </div>
 
