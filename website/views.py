@@ -37,6 +37,9 @@ def current_game(request, game_id=0):
 
 
 def game_list(request):
+    #games_being_created=Game.objects.filter(started__exact=False)
+    #games_started=Game.objects.filter(started__exact=True)
+    #return render(request, 'website/gameList.html',context={'gamesStarted':games_started,'gamesBeingCreated':games_being_created})
     return render(request, 'website/gameList.html')
 
 

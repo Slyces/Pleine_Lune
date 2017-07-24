@@ -24,6 +24,7 @@ class Game(models.Model):
     name = models.TextField(max_length=50, blank=True)
     gamemode = models.TextField(max_length=50, blank=True)
     player = models.ManyToManyField(Player)
+    started = models.BooleanField(default=True)
     # @TODO Etat du jeu
 
 
