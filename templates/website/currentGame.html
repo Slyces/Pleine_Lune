@@ -10,7 +10,15 @@
 {% block content %}
     <div class="ui container">
         <div class="ui segment">
-            <h1 class="ui center"> Ceci est une partie en cours ! id : {{ id }}</h1>
+            <h1 class="ui center"> Village {{ nom_du_village }}</h1>
+        </div>
+    </div>
+    <div class="ui container">
+        <div class="ui segment">
+            <h3 class="ui dividing header">Habitants</h3>
+            {% for player in player_list %}
+                <p>{{ player.nickname }}</p>
+            {% endfor %}
         </div>
     </div>
     <div class="ui container">

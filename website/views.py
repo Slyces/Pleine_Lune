@@ -22,6 +22,8 @@ def current_game(request, game_id=0):
     form = ChampMessage(request.POST or None)#recupération des données
     player = Player.objects.get(user=request.user)
     game = Game.objects.get(id=game_id)
+    player_list=game.player.all()
+    nom_du_village=game.name
 
     if form.is_valid():
         message = form.cleaned_data['message']#Ajout du messages à la BDD
@@ -29,9 +31,9 @@ def current_game(request, game_id=0):
     else:
         message = "Tapez du texte !"
 
-    chat = Message.objects.all().order_by('pub_date')  # Tri des messages
+    chat = Message.objects.all().order_by('pub_date')  # Tri des messages (après avoir potentiellement update la BDD)
     chat = chat[max(len(chat) - 20, 0):len(chat)]  # Chargement des 20 derniers messages
-    return render(request, 'website/currentGame.html', context={"message": message,"id":game_id,"chat":chat})
+    return render(request, 'website/currentGame.html', context={"message": message,"chat":chat,"player_list":player_list,"nom_du_village":nom_du_village})
 
 
 def game_list(request):
