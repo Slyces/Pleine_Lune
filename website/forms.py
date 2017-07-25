@@ -15,3 +15,7 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(max_length=50)
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
+
+class CreateGameForm(forms.Form):
+    game_name = forms.CharField(max_length=50)
+    gamemode = forms.CharField(max_length=50)

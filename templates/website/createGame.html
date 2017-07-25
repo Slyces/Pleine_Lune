@@ -36,40 +36,23 @@
                     Create your game
                 </div>
             </h2>
-            <form action="/accounts/register/" method="post">
+            <form action="" method="post">
                 {% csrf_token %}
                 <div class="ui raised segment">
                     <div class="ui form">
                         <div class="two fields">
                             <div class="field">
-                                <label>Name</label>
-                                {{ form.username }}
+                                <label>Nom du vallage</label>
+                                {{ form.game_name }}
                             </div>
                             <div class="field">
-                                <label>GameMode</label>
-                                {{ form.password }}
+                                <label>Mode de jeu</label>
+                                {{ form.gamemode }}
                             </div>
                         </div>
                     </div>
-                    <div class="ui form">
-                        <div class="three fields">
-                            <div class="field">
-                                <label>Max players</label>
-                                {{ form.email }}
-                            </div>
-                            <div class="field">
-                                <label>Other settings</label>
-                                {{ form.first_name }}
-                            </div>
-                            <div class="field">
-                                <label>Other settings</label>
-                                {{ form.last_name }}
-                            </div>
-                        </div>
-                    </div>
-                    <input class="ui fluid large blue submit button" type="submit" value="Create">
+                    <input class="ui fluid large blue submit button" type="submit" value="Créer">
                 </div>
-                {#                {{ form.as_p }}#}
             </form>
             {#            <form class="ui large form" action="." method="post">#}
             {#                {% csrf_token %}#}

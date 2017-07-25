@@ -48,7 +48,19 @@ def help_page(request):
 
 
 def create_game(request):
-    return render(request, 'website/createGame.html')
+    if request.method == 'POST':
+        form=CreateGameForm(request.POST)
+        if form.is_valid():
+            player = Player.objects.get(user=request.user)
+            g=Game(id=3,name=form.cleaned_data['game_name'],gamemode=form.cleaned_data['gamemode'],player=[])
+            g.player.add(player)
+            g.save()
+            # @TODO Aménager une page po
+            # ur les parties en attente de joueurs
+            return HttpResponseRedirect(reverse('home'))
+    else:
+        form = CreateGameForm()
+    return render(request, 'website/createGame.html',{'form':form})
 
 
 def register(request):
