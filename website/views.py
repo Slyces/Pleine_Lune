@@ -52,9 +52,9 @@ def create_game(request):
         form=CreateGameForm(request.POST)
         if form.is_valid():
             player = Player.objects.get(user=request.user)
-            g=Game(id=3,name=form.cleaned_data['game_name'],gamemode=form.cleaned_data['gamemode'],player=[])
-            g.player.add(player)
+            g=Game(id=3,name=form.cleaned_data['game_name'],gamemode=form.cleaned_data['gamemode'])
             g.save()
+            g.player.add(player)
             # @TODO Aménager une page po
             # ur les parties en attente de joueurs
             return HttpResponseRedirect(reverse('home'))
