@@ -37,10 +37,10 @@ def current_game(request, game_id=0):
 
 
 def game_list(request):
-    #games_being_created=Game.objects.filter(started__exact=False)
-    #games_started=Game.objects.filter(started__exact=True)
-    #return render(request, 'website/gameList.html',context={'gamesStarted':games_started,'gamesBeingCreated':games_being_created})
-    return render(request, 'website/gameList.html')
+    games_being_created=Game.objects.filter(started__exact=False)
+    games_started=Game.objects.filter(started__exact=True)
+    return render(request, 'website/gameList.html',context={'gamesStarted':games_started,'gamesBeingCreated':games_being_created})
+    #return render(request, 'website/gameList.html')
 
 
 def help_page(request):
@@ -52,7 +52,7 @@ def create_game(request):
         form=CreateGameForm(request.POST)
         if form.is_valid():
             player = Player.objects.get(user=request.user)
-            g=Game(id=3,name=form.cleaned_data['game_name'],gamemode=form.cleaned_data['gamemode'])
+            g=Game(id=3,name=form.cleaned_data['game_name'],gamemode=form.cleaned_data['gamemode'],started=False)
             g.save()
             g.player.add(player)
             # @TODO Aménager une page po
