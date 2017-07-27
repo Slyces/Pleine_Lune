@@ -52,7 +52,8 @@ def create_game(request):
         form=CreateGameForm(request.POST)
         if form.is_valid():
             player = Player.objects.get(user=request.user)
-            g=Game(id=3,name=form.cleaned_data['game_name'],gamemode=form.cleaned_data['gamemode'],started=False)
+            id_game=Game.objects.all().count()+1
+            g=Game(id=id_game,name=form.cleaned_data['game_name'],gamemode=form.cleaned_data['gamemode'],started=False)
             g.save()
             g.player.add(player)
             # @TODO Aménager une page po

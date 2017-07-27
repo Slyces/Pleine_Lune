@@ -16,7 +16,7 @@
         <div class="ui segment">
             <h3 class="ui dividing header">Villages en construction :</h3>
             {% for game in gamesBeingCreated %}
-                <p>{{ game.name }}</p>
+                <p><a href="{% url 'currentGame' game.id %}">{{ game.name }}</a></p>
             {% endfor %}
             <h3 class="ui dividing header">Autre villages de la région :</h3>
             {% for game in gamesStarted %}
