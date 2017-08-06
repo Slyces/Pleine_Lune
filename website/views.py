@@ -25,15 +25,21 @@ def current_game(request, game_id=0):
     player_list=game.player.all()
     nom_du_village=game.name
 
-    if form.is_valid():
+    if form.is_valid() and "id_form" in request.POST and request.POST["id_form"]=="1":
         message = form.cleaned_data['message']#Ajout du messages à la BDD
         Message(content=message, sender=player, pub_date=datetime.datetime.now(), game=game).save()
+    elif "id_form" in request.POST and request.POST["id_form"]=="2":
+        message = "Tapez du texte !"
+        game.player.add(player)
+        Message(content="Un joueur a rejoint la partie !", sender=player, pub_date=datetime.datetime.now(), game=game).save()
     else:
         message = "Tapez du texte !"
 
+    player_in_village = player in player_list  # True si le joueur participe à cette partie
+
     chat = Message.objects.all().order_by('pub_date')  # Tri des messages (après avoir potentiellement update la BDD)
     chat = chat[max(len(chat) - 20, 0):len(chat)]  # Chargement des 20 derniers messages
-    return render(request, 'website/currentGame.html', context={"message": message,"chat":chat,"player_list":player_list,"nom_du_village":nom_du_village})
+    return render(request, 'website/currentGame.html', context={"message": message,"chat":chat,"player_list":player_list,"nom_du_village":nom_du_village,"player_in_village":player_in_village})
 
 
 def game_list(request):

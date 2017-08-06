@@ -15,10 +15,19 @@
     </div>
     <div class="ui container">
         <div class="ui segment">
-            <h3 class="ui dividing header">Habitants</h3>
+            <h3 class="ui dividing header">
+                Habitants
+            </h3>
             {% for player in player_list %}
                 <p>{{ player.nickname }}</p>
             {% endfor %}
+            {% if not player_in_village %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="2" name="id_form"/>
+                    <input type="submit" value="Rejoindre" class="ui button"/>
+                </form>
+            {% endif %}
         </div>
     </div>
     <div class="ui container">
@@ -48,6 +57,7 @@
                     <div class="field">
                         <textarea id="id_message" name="message"></textarea>
                     </div>
+                    <input type="hidden" value="1" name="id_form"/>
                     <input type="submit" value="Send Message" class="ui blue button"/>
                 </form>
             </div>

@@ -19,3 +19,6 @@ class RegisterForm(forms.Form):
 class CreateGameForm(forms.Form):
     game_name = forms.CharField(max_length=50)
     gamemode = forms.CharField(max_length=50)
+
+class JoinGame(forms.Form):
+    pass
