@@ -30,41 +30,43 @@
             {% endif %}
         </div>
     </div>
-    <div class="ui container">
-        <div class="ui segment">
-            <h3 class="ui dividing header">Chat</h3>
-            <div style="overflow:scroll; height: 400px; overflow-x:hidden;" class="ui comments">
-{#            @TODO faire commencer la scrollbar en bas, elargir la zone de chat#}
-                {% for post in chat %}
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="{% static 'images/profile.jpg' %}">
-                        </a>
-                        <div class="content">
-                            <a class="author">{{ post.sender.nickname }}</a>
-                            <div class="metadata">
-                                <span class="date">{{ post.pub_date }}</span>
-                            </div>
-                            <div class="text">
-                                {{ post.content }}
+    {% if player_in_village %}
+        <div class="ui container">
+            <div class="ui segment">
+                <h3 class="ui dividing header">Chat</h3>
+                <div style="overflow:scroll; height: 400px; overflow-x:hidden;" class="ui comments">
+    {#            @TODO faire commencer la scrollbar en bas, elargir la zone de chat#}
+                    {% for post in chat %}
+                        <div class="comment">
+                            <a class="avatar">
+                                <img src="{% static 'images/profile.jpg' %}">
+                            </a>
+                            <div class="content">
+                                <a class="author">{{ post.sender.nickname }}</a>
+                                <div class="metadata">
+                                    <span class="date">{{ post.pub_date }}</span>
+                                </div>
+                                <div class="text">
+                                    {{ post.content }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
-                <form action="" method="post" class="ui reply form">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <div class="field">
-                        <textarea id="id_message" name="message"></textarea>
-                    </div>
-                    <input type="hidden" value="1" name="id_form"/>
-                    <input type="submit" value="Send Message" class="ui blue button"/>
-                </form>
+                    {% endfor %}
+                    <form action="" method="post" class="ui reply form">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="field">
+                            <textarea id="id_message" name="message"></textarea>
+                        </div>
+                        <input type="hidden" value="1" name="id_form"/>
+                        <input type="submit" value="Send Message" class="ui blue button"/>
+                    </form>
+                </div>
+
+
             </div>
-
-
         </div>
-    </div>
+    {% endif %}
     <div class="ui container">
         <div class="ui segment">
             <p><a href="{% url 'home' %}">Page d'accueil</a></p>
