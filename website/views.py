@@ -7,6 +7,8 @@ from .models import *
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import datetime
+from django.contrib.auth.models import User
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -35,6 +37,7 @@ def current_game(request, game_id=0):
     else:
         message = "Tapez du texte !"
 
+    chat = Message.objects.filter(game__exact=game).order_by('pub_date')  # Tri des messages (après avoir potentiellement update la BDD)
     player_in_village = player in player_list  # True si le joueur participe à cette partie
 
     chat = Message.objects.all().order_by('pub_date')  # Tri des messages (après avoir potentiellement update la BDD)
@@ -84,3 +87,11 @@ def register(request):
         form = RegisterForm()
     return render(request, 'registration/register.html', {'form': form})
 
+def validate_username(request):
+    username = request.GET.get('username', None)
+    data = {
+        'is_taken': User.objects.filter(username__iexact=username).exists()
+    }
+    if data['is_taken']:
+        data['error_message'] = 'A user with this username already exists.'
+    return JsonResponse(data)
