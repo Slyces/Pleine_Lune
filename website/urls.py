@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^gameList/?', views.game_list, name='gameList'),
     url(r'^help/?', views.help_page, name='help'),
     url(r'^createGame/', views.create_game, name='createGame'),
+    url(r'^ajax/validate_username/$', views.validate_username, name='validate_username'),
 ]
