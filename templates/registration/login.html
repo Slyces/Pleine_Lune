@@ -33,19 +33,6 @@
                 $('.ui.form')
                     .form({
                         fields: {
-                            email: {
-                                identifier: 'id_username',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Please enter your username'
-                                    },
-                                    {
-                                        type: 'email',
-                                        prompt: 'Please enter a valid username'
-                                    }
-                                ]
-                            },
                             password: {
                                 identifier: 'id_password',
                                 rules: [
@@ -94,23 +81,23 @@
                     <input class="ui fluid large blue submit button" type="submit" value="Login">
                 </div>
             </form>
-            <div class="ui error message">
-                    {% if form.errors %}
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <div class="alert alert-danger">
-                                    <strong>{{ error|escape }}</strong>
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-                        {% for error in form.non_field_errors %}
+            {% if form.errors %}
+                <div class="ui error message">
+                    {% for field in form %}
+                        {% for error in field.errors %}
                             <div class="alert alert-danger">
-                                <strong>{{ error|escape }}</strong>
+                                <strong>{{ error }}</strong>
                             </div>
                         {% endfor %}
-                    {% endif %}
-                </div>
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error }}</strong>
+                        </div>
+                    {% endfor %}
 
+                </div>
+            {% endif %}
             <div class="ui message">
                 <h3><a href="{% url 'register' %}">Sign Up</a></h3>
             </div>
